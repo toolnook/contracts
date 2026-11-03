@@ -3,7 +3,7 @@ requires = ["setuptools>=68.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "ledgerlite"
+name = "toolnook-contracts"
 version = "0.1.0"
 description = "A local-first, file-based double-entry accounting ledger CLI for small teams and freelancers"
 readme = "README.md"
@@ -29,8 +29,8 @@ classifiers = [
 ledgerlite = "ledgerlite.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/toolnook/ledgerlite"
-Issues = "https://github.com/toolnook/ledgerlite/issues"
+Homepage = "https://github.com/toolnook/contracts"
+Issues = "https://github.com/toolnook/contracts/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toolnook Contracts — Double-Entry Accounting</title>
+<style>
+:root{--bg:#0f0f17;--card:#1a1a2e;--accent:#6366f1;--accent2:#8b5cf6;--fg:#e2e8f0;--muted:#94a3b8;--border:#2d2d44}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6}
+nav{display:flex;justify-content:space-between;align-items:center;padding:16px 40px;border-bottom:1px solid var(--border)}
+.logo{font-weight:700;font-size:1.2rem;color:var(--accent2)}
+.nav-links a{color:var(--muted);text-decoration:none;margin-left:24px;font-size:.9rem}
+.nav-links a:hover{color:var(--fg)}
+.hero{text-align:center;padding:80px 20px;max-width:800px;margin:0 auto}
+.hero h1{font-size:2.8rem;margin-bottom:16px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.2rem;margin-bottom:32px}
+.badge{display:inline-block;padding:4px 12px;border-radius:6px;background:var(--card);color:var(--accent2);font-size:.85rem;border:1px solid var(--border);margin:0 4px}
+.ecosystem{display:flex;gap:16px;justify-content:center;margin-bottom:40px;flex-wrap:wrap}
+.eco-card{background:var(--card);padding:16px 24px;border-radius:10px;border:1px solid var(--border);width:200px;text-align:left;text-decoration:none;color:var(--fg);transition:border-color .2s}
+.eco-card.active{border-color:var(--accent)}
+.eco-card:hover{border-color:var(--accent2)}
+.eco-card h3{font-size:1rem;margin-bottom:4px}
+.eco-card p{font-size:.8rem;color:var(--muted)}
+.section{max-width:800px;margin:0 auto;padding:40px 20px}
+.section h2{font-size:1.6rem;margin-bottom:20px;color:var(--fg)}
+.features{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.feature{background:var(--card);padding:20px;border-radius:10px;border:1px solid var(--border)}
+.feature h3{font-size:1rem;color:var(--accent2);margin-bottom:8px}
+.feature p{font-size:.85rem;color:var(--muted)}
+pre{background:var(--card);padding:16px;border-radius:8px;overflow-x:auto;border:1px solid var(--border);font-size:.85rem}
+code{font-family:'Fira Code',monospace}
+table{width:100%;border-collapse:collapse;margin:16px 0}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--border);font-size:.9rem}
+th{color:var(--accent2)}
+footer{text-align:center;padding:40px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--border);margin-top:40px}
+</style>
+</head>
+<body>
+<nav>
+<div class="logo">⬡ toolnook</div>
+<div class="nav-links">
+<a href="https://github.com/toolnook/backend">Backend</a>
+<a href="https://github.com/toolnook/frontend">Frontend</a>
+<a href="https://github.com/toolnook/contracts">GitHub</a>
+</div>
+</nav>
+
+<div class="hero">
+<h1>Toolnook Contracts</h1>
+<p>A local-first, file-based double-entry accounting CLI for small teams and freelancers. Track income, expenses, and project profitability — no database required.</p>
+<div>
+<span class="badge">Python 3.9+</span>
+<span class="badge">JSON File Storage</span>
+<span class="badge">MIT License</span>
+</div>
+</div>
+
+<div class="ecosystem">
+<a href="https://github.com/toolnook/backend" class="eco-card"><h3>⬡ Backend</h3><p>API gateway & proxy</p></a>
+<a href="https://github.com/toolnook/frontend" class="eco-card"><h3>⬡ Frontend</h3><p>Documentation generator</p></a>
+<a href="https://github.com/toolnook/contracts" class="eco-card active"><h3>⬡ Contracts</h3><p>Double-entry accounting</p></a>
+</div>
+
+<div class="section">
+<h2>Features</h2>
+<div class="features">
+<div class="feature"><h3>Double-Entry</h3><p>Every transaction validated — debits must equal credits</p></div>
+<div class="feature"><h3>JSON Storage</h3><p>Human-readable, git-friendly ledger files</p></div>
+<div class="feature"><h3>Project Tagging</h3><p>Tag transactions to projects, track per-project profitability</p></div>
+<div class="feature"><h3>Financial Reports</h3><p>P&L, Balance Sheet, Cash Flow in terminal tables</p></div>
+<div class="feature"><h3>CSV Import</h3><p>Bulk import from spreadsheet exports</p></div>
+<div class="feature"><h3>Recurring Scheduler</h3><p>Auto-generate entries for rent, subscriptions, etc.</p></div>
+</div>
+</div>
+
+<div class="section">
+<h2>Quick Start</h2>
+<pre><code>git clone https://github.com/toolnook/contracts.git
+cd contracts
+pip install -e .
+
+ledgerlite init
+ledgerlite account add Cash asset
+ledgerlite account add Revenue revenue
+ledgerlite add --description "Client invoice" --debit Cash:1000 --credit Revenue:1000 --tag "acme"
+ledgerlite balance
+ledgerlite report by-project</code></pre>
+</div>
+
+<div class="section">
+<h2>Commands</h2>
+<table>
+<tr><th>Command</th><th>Description</th></tr>
+<tr><td><code>ledgerlite init</code></td><td>Initialize a new ledger</td></tr>
+<tr><td><code>ledgerlite account add &lt;name&gt; &lt;type&gt;</code></td><td>Add account</td></tr>
+<tr><td><code>ledgerlite add</code></td><td>Add a transaction</td></tr>
+<tr><td><code>ledgerlite balance</code></td><td>Show account balances</td></tr>
+<tr><td><code>ledgerlite query</code></td><td>Filter transactions</td></tr>
+<tr><td><code>ledgerlite report pnl</code></td><td>Profit &amp; Loss statement</td></tr>
+<tr><td><code>ledgerlite report by-project</code></td><td>Per-project profitability</td></tr>
+<tr><td><code>ledgerlite import csv &lt;file&gt;</code></td><td>Import from CSV</td></tr>
+<tr><td><code>ledgerlite recurring generate</code></td><td>Generate recurring entries</td></tr>
+</table>
+</div>
+
+<footer>Toolnook Contracts v0.1.0 — <a href="https://github.com/toolnook/contracts" style="color:var(--accent2)">GitHub</a> — MIT License</footer>
+</body>
+</html>

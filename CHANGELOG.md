@@ -19,4 +19,4 @@ All notable changes to LedgerLite are documented here. The format follows [Keep 
 - CI workflow for GitHub Actions
 - Issue templates and PR template
 
-[0.1.0]: https://github.com/toolnook/ledgerlite/releases/tag/v0.1.0
+[0.1.0]: https://github.com/toolnook/contracts/releases/tag/v0.1.0
