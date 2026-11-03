@@ -29,8 +29,8 @@ classifiers = [
 ledgerlite = "ledgerlite.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/forgekit/ledgerlite"
-Issues = "https://github.com/forgekit/ledgerlite/issues"
+Homepage = "https://github.com/crafstack/ledgerlite"
+Issues = "https://github.com/crafstack/ledgerlite/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]

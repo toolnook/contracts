@@ -5,7 +5,7 @@ Thanks for your interest in improving LedgerLite! This guide covers the developm
 ## Getting started
 
 ```bash
-git clone https://github.com/forgekit/ledgerlite.git
+git clone https://github.com/crafstack/ledgerlite.git
 cd ledgerlite
 pip install -e ".[dev]"
 pytest -v
