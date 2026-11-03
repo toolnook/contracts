@@ -266,6 +266,42 @@ def cmd_recurring_generate(args: argparse.Namespace) -> None:
         sys.exit(1)
 
 
+def cmd_stellar_sync(args: argparse.Namespace) -> None:
+    """Sync XLM and asset payments from Stellar Horizon API."""
+    path = get_ledger_path(args)
+    storage = LedgerStorage(path)
+    ledger = Ledger(storage)
+
+    from .stellar import HorizonClient, reconcile_payments, is_valid_account_id
+
+    if not is_valid_account_id(args.account):
+        print(f"Error: invalid Stellar account ID: {args.account}")
+        print("Account IDs start with 'G' and are 56 characters long.")
+        sys.exit(1)
+
+    client = HorizonClient(network=args.network)
+    print(f"Fetching payments for {args.account} from Horizon ({args.network})...")
+
+    try:
+        payments = client.get_all_payments(args.account, max_records=args.limit)
+        if not payments:
+            print(f"No payments found for {args.account}")
+            return
+
+        txns = reconcile_payments(payments)
+        ledger.add_transactions(txns)
+        total_xlm = sum(
+            p.amount for p in payments if p.is_native()
+        )
+        print(f"Synced {len(txns)} payment(s) from Horizon")
+        if total_xlm:
+            print(f"  Total XLM: {total_xlm}")
+        print(f"  Network: {args.network}")
+    except Exception as e:
+        print(f"Error syncing from Horizon: {e}")
+        sys.exit(1)
+
+
 def build_parser() -> argparse.ArgumentParser:
     """Build the CLI argument parser."""
     parser = argparse.ArgumentParser(
@@ -348,6 +384,16 @@ def build_parser() -> argparse.ArgumentParser:
     rec_gen.add_argument("--to", dest="to_date", required=True, help="End date")
     rec_gen.add_argument("--all", action="store_true", help="Generate for all templates")
     rec_gen.set_defaults(func=cmd_recurring_generate)
+
+    # stellar
+    stellar_parser = subparsers.add_parser("stellar", help="Sync Stellar payments from Horizon")
+    stellar_sub = stellar_parser.add_subparsers(dest="subcommand", required=True)
+
+    stellar_sync = stellar_sub.add_parser("sync", help="Sync XLM payments from Horizon API")
+    stellar_sync.add_argument("--account", required=True, help="Stellar account ID (G...)")
+    stellar_sync.add_argument("--network", default="public", choices=["public", "testnet"], help="Stellar network")
+    stellar_sync.add_argument("--limit", type=int, default=1000, help="Max records to fetch")
+    stellar_sync.set_defaults(func=cmd_stellar_sync)
 
     return parser
 
