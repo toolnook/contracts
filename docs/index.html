@@ -1,106 +1,85 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Toolnook Contracts — Stellar Payment Ledger</title>
-<style>
-:root{--bg:#0f0f17;--card:#1a1a2e;--accent:#6366f1;--accent2:#8b5cf6;--fg:#e2e8f0;--muted:#94a3b8;--border:#2d2d44;--stellar:#7d5cff}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--fg);line-height:1.6}
-nav{display:flex;justify-content:space-between;align-items:center;padding:16px 40px;border-bottom:1px solid var(--border)}
-.logo{font-weight:700;font-size:1.2rem;color:var(--stellar)}
-.nav-links a{color:var(--muted);text-decoration:none;margin-left:24px;font-size:.9rem}
-.nav-links a:hover{color:var(--fg)}
-.hero{text-align:center;padding:80px 20px;max-width:800px;margin:0 auto}
-.hero h1{font-size:2.8rem;margin-bottom:16px;background:linear-gradient(135deg,var(--accent),var(--stellar));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{color:var(--muted);font-size:1.2rem;margin-bottom:32px}
-.badge{display:inline-block;padding:4px 12px;border-radius:6px;background:var(--card);color:var(--stellar);font-size:.85rem;border:1px solid var(--border);margin:0 4px}
-.ecosystem{display:flex;gap:16px;justify-content:center;margin-bottom:40px;flex-wrap:wrap}
-.eco-card{background:var(--card);padding:16px 24px;border-radius:10px;border:1px solid var(--border);width:200px;text-align:left;text-decoration:none;color:var(--fg);transition:border-color .2s}
-.eco-card.active{border-color:var(--stellar)}
-.eco-card:hover{border-color:var(--accent2)}
-.eco-card h3{font-size:1rem;margin-bottom:4px}
-.eco-card p{font-size:.8rem;color:var(--muted)}
-.section{max-width:800px;margin:0 auto;padding:40px 20px}
-.section h2{font-size:1.6rem;margin-bottom:20px;color:var(--fg)}
-.features{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
-.feature{background:var(--card);padding:20px;border-radius:10px;border:1px solid var(--border)}
-.feature h3{font-size:1rem;color:var(--stellar);margin-bottom:8px}
-.feature p{font-size:.85rem;color:var(--muted)}
-pre{background:var(--card);padding:16px;border-radius:8px;overflow-x:auto;border:1px solid var(--border);font-size:.85rem}
-code{font-family:'Fira Code',monospace}
-table{width:100%;border-collapse:collapse;margin:16px 0}
-th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--border);font-size:.9rem}
-th{color:var(--stellar)}
-footer{text-align:center;padding:40px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--border);margin-top:40px}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A beginner-friendly guide to Toolnook Contracts, a local double-entry ledger with Stellar payment sync.">
+  <title>Toolnook Contracts | Stellar payments and bookkeeping</title>
+  <link rel="icon" href="assets/toolnook-logo.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<nav>
-<div class="logo">✦ toolnook — built for Stellar</div>
-<div class="nav-links">
-<a href="https://github.com/toolnook/backend">Backend</a>
-<a href="https://github.com/toolnook/frontend">Frontend</a>
-<a href="https://github.com/toolnook/contracts">GitHub</a>
-</div>
-</nav>
-<div class="hero">
-<h1>Stellar Payment Ledger</h1>
-<p>A double-entry accounting CLI that reconciles on-chain XLM and asset payments from Stellar Horizon with off-chain bookkeeping. For businesses accepting Stellar payments.</p>
-<div>
-<span class="badge">Python 3.9+</span>
-<span class="badge">Stellar Horizon</span>
-<span class="badge">XLM + Assets</span>
-<span class="badge">MIT License</span>
-</div>
-</div>
-<div class="ecosystem">
-<a href="https://github.com/toolnook/backend" class="eco-card"><h3>✦ Backend</h3><p>Horizon gateway & cache</p></a>
-<a href="https://github.com/toolnook/frontend" class="eco-card"><h3>✦ Frontend</h3><p>Soroban contract docs</p></a>
-<a href="https://github.com/toolnook/contracts" class="eco-card active"><h3>✦ Contracts</h3><p>XLM payment ledger</p></a>
-</div>
-<div class="section">
-<h2>Why it helps Stellar</h2>
-<div class="features">
-<div class="feature"><h3>Horizon Payment Sync</h3><p>Fetch XLM and asset payments from Horizon and reconcile to double-entry transactions</p></div>
-<div class="feature"><h3>XLM Amount Handling</h3><p>Native stroop-to-XLM conversion with Decimal precision</p></div>
-<div class="feature"><h3>Multi-Asset Tracking</h3><p>Track XLM, USDC, EURT and custom assets in one ledger</p></div>
-<div class="feature"><h3>Project Tagging</h3><p>Tag Stellar payments to projects, report per-project profitability</p></div>
-<div class="feature"><h3>Financial Reports</h3><p>P&L, Balance Sheet, Cash Flow with XLM-denominated amounts</p></div>
-<div class="feature"><h3>Network Support</h3><p>Sync from public or testnet with passphrase validation</p></div>
-</div>
-</div>
-<div class="section">
-<h2>Quick Start</h2>
-<pre><code>git clone https://github.com/toolnook/contracts.git
-cd contracts
-pip install -e .
+  <header class="site-header">
+    <a class="brand" href="https://github.com/toolnook" aria-label="Toolnook on GitHub">
+      <img src="assets/toolnook-logo.svg" alt="Toolnook">
+    </a>
+    <nav class="site-nav" aria-label="Main navigation">
+      <a href="#start">Get started</a>
+      <a href="#concepts">Key ideas</a>
+      <a href="https://github.com/toolnook/contracts">Source code</a>
+    </nav>
+  </header>
+  <main class="wrap">
+    <section class="hero">
+      <div class="eyebrow">Toolnook for Stellar · Contracts</div>
+      <h1>Keep a clearer record of payments.</h1>
+      <p>This command-line tool keeps a small bookkeeping ledger on your computer. It can also read a Stellar account's payment history from Horizon and bring those entries into the ledger for you to review.</p>
+      <div class="actions">
+        <a class="button" href="#start">Start here</a>
+        <a class="button secondary" href="https://github.com/toolnook/contracts">View the code</a>
+      </div>
+    </section>
 
-ledgerlite init
+    <section class="section" aria-labelledby="projects-title">
+      <h2 id="projects-title">Part of the Toolnook toolkit</h2>
+      <p class="lead">Use one project or combine them; each solves a different job around Stellar.</p>
+      <div class="projects">
+        <a href="https://toolnook.github.io/backend/">Backend · API gateway</a>
+        <a href="https://toolnook.github.io/frontend/">Frontend · contract docs</a>
+        <a href="https://github.com/toolnook/contracts" aria-current="page">Contracts · payment ledger</a>
+      </div>
+    </section>
+
+    <section class="section" id="concepts">
+      <h2>What happens to a payment?</h2>
+      <p class="lead">Stellar stores payment activity on the network. The ledger reads that activity from Horizon and saves bookkeeping records in a local file that you control.</p>
+      <div class="flow" aria-label="Payment flow">
+        <span>Stellar account</span><b aria-hidden="true">→</b><span>Horizon</span><b aria-hidden="true">→</b><span>Local ledger</span><b aria-hidden="true">→</b><span>Your review</span>
+      </div>
+      <div class="grid" style="margin-top:16px">
+        <article class="card"><h3>Double-entry</h3><p>Each transaction has matching debit and credit amounts. This accounting rule helps keep the books balanced.</p></article>
+        <article class="card"><h3>Reconciliation</h3><p>Compare imported payments with your records, then review and classify them to match your bookkeeping.</p></article>
+        <article class="card"><h3>Local-first</h3><p>Your ledger is a file on your computer by default. You do not need to operate a database server.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="start">
+      <h2>Try it on your computer</h2>
+      <p class="lead">You need Python 3.9 or newer. The first steps create a ledger and a couple of example account categories.</p>
+      <div class="grid">
+        <article class="card"><span class="step">1</span><h3>Install the tool</h3><pre><code>git clone https://github.com/toolnook/contracts.git
+cd contracts
+python -m pip install -e .</code></pre></article>
+        <article class="card"><span class="step">2</span><h3>Start your ledger</h3><pre><code>ledgerlite init
 ledgerlite account add "Stellar Wallet" asset
 ledgerlite account add "XLM Revenue" revenue
+ledgerlite balance</code></pre><p>The ledger is stored at <code>~/.ledgerlite/ledger.json</code> by default.</p></article>
+        <article class="card"><span class="step">3</span><h3>Optionally sync testnet</h3><pre><code>ledgerlite stellar sync \
+  --account YOUR_STELLAR_PUBLIC_KEY \
+  --network testnet</code></pre><p>Use a public account address only. A secret key is never needed for this read-only sync.</p></article>
+      </div>
+      <p class="callout" style="margin-top:16px"><strong>Review imported entries.</strong> A payment is not automatically income or a particular business expense. Choose categories that match your records, and review them before relying on reports.</p>
+    </section>
 
-# Sync XLM payments from Horizon
-ledgerlite stellar sync --account GABC...1234 --network public
-
-ledgerlite balance
-ledgerlite report by-project</code></pre>
-</div>
-<div class="section">
-<h2>Commands</h2>
-<table>
-<tr><th>Command</th><th>Description</th></tr>
-<tr><td><code>ledgerlite init</code></td><td>Initialize a new ledger</td></tr>
-<tr><td><code>ledgerlite account add &lt;name&gt; &lt;type&gt;</code></td><td>Add account</td></tr>
-<tr><td><code>ledgerlite add</code></td><td>Add off-chain transaction</td></tr>
-<tr><td><code>ledgerlite balance</code></td><td>Show balances</td></tr>
-<tr><td><code>ledgerlite stellar sync</code></td><td>Sync XLM payments from Horizon</td></tr>
-<tr><td><code>ledgerlite report pnl</code></td><td>P&L statement</td></tr>
-<tr><td><code>ledgerlite report by-project</code></td><td>Per-project profitability</td></tr>
-<tr><td><code>ledgerlite import csv &lt;file&gt;</code></td><td>Import from CSV</td></tr>
-</table>
-</div>
-<footer>Toolnook Contracts v0.1.0 — Built for the Stellar network — <a href="https://github.com/toolnook/contracts" style="color:var(--stellar)">GitHub</a> — MIT License</footer>
+    <section class="section">
+      <h2>What can it help you do?</h2>
+      <div class="grid">
+        <article class="card"><h3>Check balances</h3><p>See totals for the accounts in your ledger with <code>ledgerlite balance</code>.</p></article>
+        <article class="card"><h3>Make reports</h3><p>Create profit-and-loss, balance-sheet, and cash-flow reports from recorded entries.</p></article>
+        <article class="card"><h3>Bring in other records</h3><p>Import transactions from CSV or add recurring entries for regular activity.</p></article>
+      </div>
+    </section>
+  </main>
+  <footer>This tool supports record keeping; it is not accounting, tax, or financial advice. Toolnook is independent of Stellar. <a href="https://github.com/toolnook/contracts">Contracts source</a> · MIT License</footer>
 </body>
 </html>
