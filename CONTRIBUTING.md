@@ -6,7 +6,7 @@ Thanks for your interest in improving LedgerLite! This guide covers the developm
 
 ```bash
 git clone https://github.com/toolnook/contracts.git
-cd ledgerlite
+cd contracts
 pip install -e ".[dev]"
 pytest -v
 ```
