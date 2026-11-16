@@ -2,7 +2,7 @@
 
 # Toolnook Contracts
 
-**A small, local-first bookkeeping ledger with Stellar payment sync.** Use it to record transactions, keep debits and credits balanced, and bring payment activity from Stellar Horizon into your ledger.
+**The accounting core and snapshot API for AssetScope.** The Contracts service validates issuer snapshots and compares reported Stellar balances, booked liabilities, and reserve values. Its local-first ledger and CLI remain available for bookkeeping workflows.
 
 [Read the beginner-friendly guide](https://toolnook.github.io/contracts/) · [Browse all Toolnook projects](https://github.com/toolnook)
 
@@ -54,7 +54,7 @@ asset_code,asset_issuer,amount_in_issued_asset_units,as_of,source_ref
 USD,G...,125.50,2026-11-01,statement-row-001
 ```
 
-Run it after installing the package:
+Run the CLI after installing the package:
 
 ```bash
 asset-scope \
@@ -67,6 +67,14 @@ asset-scope \
 ```
 
 This first slice compares supplied snapshots; it does not fetch or independently verify them. Reserve valuations must be converted to the issued asset's units before import. A clean report is not proof of reserves, solvency, legal compliance, or an audit opinion.
+
+The local API accepts the same CSV snapshots as JSON fields and returns the same report. It binds to localhost by default:
+
+```bash
+asset-scope-api --host 127.0.0.1 --port 8091
+```
+
+The Backend gateway forwards `/api/assetscope/*` to this API, and the Frontend dashboard posts the three files through that route. See the [Backend integrated setup](https://github.com/toolnook/backend#run-the-integrated-assetscope-app-locally) to run all three repositories together. The API has no authentication in this prototype; keep it on localhost.
 
 ## Explore and contribute
 

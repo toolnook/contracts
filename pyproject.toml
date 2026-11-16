@@ -28,6 +28,7 @@ classifiers = [
 [project.scripts]
 ledgerlite = "ledgerlite.cli:main"
 asset-scope = "ledgerlite.asset_scope_cli:main"
+asset-scope-api = "ledgerlite.asset_scope_api:main"
 
 [project.optional-dependencies]
 dev = ["pytest>=7,<9"]
