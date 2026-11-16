@@ -43,6 +43,31 @@ Choose `public` only when you intend to use Stellar's public network. Review imp
 | Horizon | Stellar's HTTP API for looking up accounts and payment history. |
 | Reconciliation | Comparing recorded transactions with payment activity to find and resolve differences. |
 
+## AssetScope (early prototype)
+
+`asset-scope` compares three CSV snapshots for one issued asset: on-chain balances, booked liabilities, and reported reserve value. Every amount must already be expressed in the issued asset's units. The tool uses decimal arithmetic, rejects repeated source references, and flags mismatched snapshot dates or balances.
+
+Each CSV uses this header; `source_ref` must be unique within its file. The report includes each input filename and SHA-256 digest so the exact imported files can be identified later:
+
+```csv
+asset_code,asset_issuer,amount_in_issued_asset_units,as_of,source_ref
+USD,G...,125.50,2026-11-01,statement-row-001
+```
+
+Run it after installing the package:
+
+```bash
+asset-scope \
+  --asset-code USD \
+  --asset-issuer YOUR_STELLAR_ISSUER \
+  --onchain onchain.csv \
+  --ledger liabilities.csv \
+  --reserves reserves.csv \
+  --output reconciliation.json
+```
+
+This first slice compares supplied snapshots; it does not fetch or independently verify them. Reserve valuations must be converted to the issued asset's units before import. A clean report is not proof of reserves, solvency, legal compliance, or an audit opinion.
+
 ## Explore and contribute
 
 - [Project guide and examples](https://toolnook.github.io/contracts/)
